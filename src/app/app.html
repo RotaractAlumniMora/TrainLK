@@ -6,16 +6,30 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <ion-item>
-        <ion-avatar item-left>
-          <img src="assets/imgs/logo.png">
-        </ion-avatar>
-        <h2>TrainLK</h2>
-        <p>Rotaract Alumni Mora</p>
-      </ion-item>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+    <ion-list  no-lines>
+      <button ion-item menuClose (click)="openPage('Home')">
+          <ion-avatar item-left>
+            <img src="assets/imgs/logo.png">
+          </ion-avatar>
+          <h2>TrainLK</h2>
+          <p>Rotaract Alumni Mora</p>
+        </button>
+      <ion-item-divider color="light">News</ion-item-divider>
+      <button menuClose ion-item (click)="openPage('Alerts')">
+        Alerts
+      </button>
+      <button menuClose ion-item (click)="openPage('Submit')">
+        Submit
+      </button>
+      <ion-item-divider color="light">Other</ion-item-divider>
+      <button menuClose ion-item (click)="openPage('Timetable')">
+        Timetable
+      </button>
+      <button menuClose ion-item (click)="openPage('Settings')">
+        Settings
+      </button>
+      <button menuClose ion-item (click)="openPage('About Us')">
+        About Us
       </button>
     </ion-list>
   </ion-content>
