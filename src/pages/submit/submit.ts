@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the SubmitPage page.
@@ -13,12 +13,44 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'submit.html',
 })
 export class SubmitPage {
+  public data: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubmitPage');
   }
 
+  submitForm() {
+    let confirm = this.alertCtrl.create({
+      title: 'Varification needed',
+      message: 'Do you agree to send your phone number for varification purposes?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            let toast = this.toastCtrl.create({
+              message: 'Submission failed.',
+              duration: 3000
+            });
+            toast.present();
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            // Send the news submission using provider
+
+            let toast = this.toastCtrl.create({
+              message: 'Thank you for your support.',
+              duration: 3000
+            });
+            toast.present();
+          }
+        }
+      ]
+    });
+    return confirm.present();
+  }
 }

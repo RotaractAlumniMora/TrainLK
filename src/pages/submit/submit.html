@@ -15,7 +15,7 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="submitForm()">
+  <form (ngSubmit)="submitForm()" id='submit-form'>
     <ion-item>
       <ion-label>Railway Line</ion-label>
       <ion-select>
@@ -48,14 +48,14 @@
       <!-- [(ngModel)]="alert.train" -->
     </ion-item>
     <ion-item>
-        <ion-label>Delay</ion-label>
-        <ion-input type="number" name="delay"></ion-input>
-        <ion-select>
-          <ion-option>Min</ion-option>
-          <ion-option>Hrs</ion-option>
-        </ion-select>
-        <!-- [(ngModel)]="alert.train" -->
-      </ion-item>
-    <button ion-button type="submit" block>Submit</button>
+      <ion-label>Delay</ion-label>
+      <ion-input type="number" name="delay"></ion-input>
+      <ion-select>
+        <ion-option>Min</ion-option>
+        <ion-option>Hrs</ion-option>
+      </ion-select>
+      <!-- [(ngModel)]="alert.train" -->
+    </ion-item>
   </form>
+  <button ion-button type="submit" form="submit-form" block>Submit</button>
 </ion-content>
