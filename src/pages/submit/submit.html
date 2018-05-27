@@ -1,0 +1,61 @@
+<!--
+  Generated template for the SubmitPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Submit</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label>Railway Line</ion-label>
+      <ion-select>
+        <!--  [(ngModel)]="alert.line" -->
+        <ion-option>Coastal Line</ion-option>
+        <ion-option>Kalani Velley Line</ion-option>
+        <ion-option>Main Line</ion-option>
+        <ion-option>Upcountry Line</ion-option>
+        <ion-option>Puttalam Line</ion-option>
+        <ion-option>Mathale Line</ion-option>
+        <ion-option>Batticalo Line</ion-option>
+        <ion-option>Trinco Line</ion-option>
+        <ion-option>Mannar Line</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select>
+        <!--  [(ngModel)]="alert.type" -->
+        <ion-option>Delay</ion-option>
+        <ion-option>Cancellation</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Train</ion-label>
+      <ion-select>
+        <ion-option>Train 1</ion-option>
+        <ion-option>Other trains</ion-option>
+      </ion-select>
+      <!-- [(ngModel)]="alert.train" -->
+    </ion-item>
+    <ion-item>
+        <ion-label>Delay</ion-label>
+        <ion-input type="number" name="delay"></ion-input>
+        <ion-select>
+          <ion-option>Min</ion-option>
+          <ion-option>Hrs</ion-option>
+        </ion-select>
+        <!-- [(ngModel)]="alert.train" -->
+      </ion-item>
+    <button ion-button type="submit" block>Submit</button>
+  </form>
+</ion-content>
