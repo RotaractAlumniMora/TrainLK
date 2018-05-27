@@ -17,14 +17,30 @@
 
 
 <ion-content padding>
+  <form (ngSubmit)="updateSettings()">
+
+  </form>
   <form id="settings-form5" class="list">
-    <label class="item item-select" id="settings-select6" name="preferredLineSelect">
-      <span class="input-label">Preferred Line</span>
-      <select>
-        <option></option>
-      </select>
-    </label>
-    <ion-toggle toggle-class="toggle-dark" id="settings-toggle1" name="notificatoinToggle">Notifications</ion-toggle>
-    <button id="settings-button3" class="button button-positive button-block">Save</button>
+    <ion-item>
+      <ion-label>Preferred Line</ion-label>
+      <ion-select>
+        <!--  [(ngModel)]="alert.line" -->
+        <ion-option>Coastal Line</ion-option>
+        <ion-option>Kalani Velley Line</ion-option>
+        <ion-option>Main Line</ion-option>
+        <ion-option>Upcountry Line</ion-option>
+        <ion-option>Puttalam Line</ion-option>
+        <ion-option>Mathale Line</ion-option>
+        <ion-option>Batticalo Line</ion-option>
+        <ion-option>Trinco Line</ion-option>
+        <ion-option>Mannar Line</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Notifications</ion-label>
+      <ion-toggle></ion-toggle>
+      <!-- [(ngModel)]="settings.notifications" -->
+    </ion-item>
+    <button id="settings-button" class="button button-positive button-block">Save</button>
   </form>
 </ion-content>
