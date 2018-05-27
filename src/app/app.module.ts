@@ -7,15 +7,19 @@ import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { SubmitPage } from '../pages/submit/submit';
+import { TimetablePage } from '../pages/timetable/timetable';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AlertsPage } from '../pages/alerts/alerts';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    AlertsPage,
     SubmitPage,
+    TimetablePage,
     SettingsPage,
     AboutUsPage,
   ],
@@ -27,7 +31,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
+    AlertsPage,
     SubmitPage,
+    TimetablePage,
     SettingsPage,
     AboutUsPage,
   ],
