@@ -17,13 +17,10 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="updateSettings()">
-
-  </form>
-  <form id="settings-form5" class="list">
+  <form id="settings-form" (ngSubmit)="saveSettings()" class="list">
     <ion-item>
       <ion-label>Preferred Line</ion-label>
-      <ion-select>
+      <ion-select [(ngModel)]="preferred_line" name='preferred_line'>
         <!--  [(ngModel)]="alert.line" -->
         <ion-option>Coastal Line</ion-option>
         <ion-option>Kalani Velley Line</ion-option>
@@ -38,9 +35,8 @@
     </ion-item>
     <ion-item>
       <ion-label>Notifications</ion-label>
-      <ion-toggle></ion-toggle>
-      <!-- [(ngModel)]="settings.notifications" -->
+      <ion-toggle [(ngModel)]="show_notifications" name='show_notifications'></ion-toggle>
     </ion-item>
-    <button id="settings-button" class="button button-positive button-block">Save</button>
   </form>
+  <button ion-button id="settings-button" form="settings-form" type="submit">Save</button>
 </ion-content>
