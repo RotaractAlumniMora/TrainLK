@@ -6,31 +6,46 @@
   </ion-header>
 
   <ion-content>
-    <ion-list  no-lines>
+    <ion-list no-lines>
       <button ion-item menuClose (click)="openPage('Home')">
-          <ion-avatar item-left>
-            <img src="assets/imgs/logo.png">
-          </ion-avatar>
-          <h2>TrainLK</h2>
-          <p>Rotaract Alumni Mora</p>
-        </button>
+        <ion-avatar item-left>
+          <img src="assets/imgs/logo.png">
+        </ion-avatar>
+        <h2>TrainLK</h2>
+        <p>Rotaract Alumni Mora</p>
+      </button>
       <ion-item-divider color="light">News</ion-item-divider>
-      <button menuClose ion-item (click)="openPage('Alerts')">
-        Alerts
-      </button>
-      <button menuClose ion-item (click)="openPage('Submit')">
-        Submit
-      </button>
+      <ion-item menuClose (click)="openPage('Alerts')">
+        <ion-label>
+          Alerts
+        </ion-label>
+        <ion-icon name='search' item-right></ion-icon>
+      </ion-item>
+      <ion-item menuClose (click)="openPage('Submit')">
+        <ion-label>
+            Submit
+        </ion-label>
+        <ion-icon name='add-circle' item-right></ion-icon>
+      </ion-item>
       <ion-item-divider color="light">Other</ion-item-divider>
-      <button menuClose ion-item (click)="openPage('Timetable')">
-        Timetable
-      </button>
-      <button menuClose ion-item (click)="openPage('Settings')">
-        Settings
-      </button>
-      <button menuClose ion-item (click)="openPage('About Us')">
-        About Us
-      </button>
+      <ion-item menuClose (click)="openPage('Timetable')">
+        <ion-label>
+            Timetable
+        </ion-label>
+        <ion-icon name='clock' item-right></ion-icon>
+      </ion-item>
+      <ion-item menuClose (click)="openPage('Settings')">
+        <ion-label>
+            Settings
+        </ion-label>
+        <ion-icon name='settings' item-right></ion-icon>
+      </ion-item>
+      <ion-item menuClose (click)="openPage('About Us')">
+        <ion-label>
+            About Us
+        </ion-label>
+        <ion-icon name='information-circle' item-right></ion-icon>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
