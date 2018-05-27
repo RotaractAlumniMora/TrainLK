@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AlertsPage } from '../pages/alerts/alerts';
 import { SettingsPage } from '../pages/settings/settings';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { SubmitPage } from '../pages/submit/submit';
@@ -11,7 +12,6 @@ import { TimetablePage } from '../pages/timetable/timetable';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AlertsPage } from '../pages/alerts/alerts';
 
 @NgModule({
   declarations: [
