@@ -11,6 +11,8 @@ import { SettingsPage } from '../pages/settings/settings';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { SubmitPage } from '../pages/submit/submit';
 import { TimetablePage } from '../pages/timetable/timetable';
+import { ViewAdsPage } from '../pages/view-ads/view-ads';
+import { ViewNewsPage } from '../pages/view-news/view-news';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,6 +28,8 @@ import { TimetableProvider } from '../providers/timetable/timetable';
     SubmitPage,
     TimetablePage,
     SettingsPage,
+    ViewAdsPage,
+    ViewNewsPage,
     AboutUsPage,
   ],
   imports: [
@@ -42,6 +46,8 @@ import { TimetableProvider } from '../providers/timetable/timetable';
     SubmitPage,
     TimetablePage,
     SettingsPage,
+    ViewAdsPage,
+    ViewNewsPage,
     AboutUsPage,
   ],
   providers: [
