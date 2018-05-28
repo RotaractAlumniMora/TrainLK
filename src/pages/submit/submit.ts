@@ -15,7 +15,10 @@ import { NavController, NavParams, AlertController, ToastController } from 'ioni
 export class SubmitPage {
   public data: any;
 
+  public type: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+    this.type = 'Delay';
   }
 
   ionViewDidLoad() {

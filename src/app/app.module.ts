@@ -16,6 +16,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NewsProvider } from '../providers/news/news';
 import { TrainsProvider } from '../providers/trains/trains';
+import { TimetableProvider } from '../providers/timetable/timetable';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { TrainsProvider } from '../providers/trains/trains';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NewsProvider,
     TrainsProvider,
+    TimetableProvider,
   ]
 })
 export class AppModule {}

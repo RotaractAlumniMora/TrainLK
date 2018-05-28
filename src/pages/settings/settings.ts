@@ -11,6 +11,12 @@ export class SettingsPage {
 
   show_notifications: boolean;
 
+  notify_weekdays: boolean;
+
+  notify_saturdays: boolean;
+
+  notify_sundays: boolean;
+
   constructor(public navCtrl: NavController, private storage: Storage) {
     this.loadSettings()
   }
@@ -18,6 +24,9 @@ export class SettingsPage {
   saveSettings() {
     this.storage.set('preferred_line', this.preferred_line);
     this.storage.set('show_notifications', this.show_notifications);
+    this.storage.set('notify_weekdays', this.notify_weekdays);
+    this.storage.set('notify_saturdays', this.notify_saturdays);
+    this.storage.set('notify_sundays', this.notify_sundays);
   }
 
   loadSettings() {
@@ -26,6 +35,15 @@ export class SettingsPage {
     });
     this.storage.get('show_notifications').then((val) => {
       this.show_notifications = val;
+    });
+    this.storage.get('notify_weekdays').then((val) => {
+      this.notify_weekdays = val;
+    });
+    this.storage.get('notify_saturdays').then((val) => {
+      this.notify_saturdays = val;
+    });
+    this.storage.get('notify_sundays').then((val) => {
+      this.notify_sundays = val;
     });
   }
 }

@@ -33,8 +33,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Type</ion-label>
-      <ion-select>
-        <!--  [(ngModel)]="alert.type" -->
+      <ion-select [(ngModel)]="type" name='alert-type'>
         <ion-option>Delay</ion-option>
         <ion-option>Cancellation</ion-option>
       </ion-select>
@@ -47,14 +46,13 @@
       </ion-select>
       <!-- [(ngModel)]="alert.train" -->
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="type=='Delay'">
       <ion-label>Delay</ion-label>
       <ion-input type="number" name="delay"></ion-input>
       <ion-select>
         <ion-option>Min</ion-option>
         <ion-option>Hrs</ion-option>
       </ion-select>
-      <!-- [(ngModel)]="alert.train" -->
     </ion-item>
   </form>
   <button ion-button type="submit" form="submit-form" block>Submit</button>
