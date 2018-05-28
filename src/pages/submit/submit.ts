@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NewsProvider } from '../../providers/news/news';
 
 /**
  * Generated class for the SubmitPage page.
@@ -17,7 +18,7 @@ export class SubmitPage {
 
   public type: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, public newsProvider: NewsProvider) {
     this.type = 'Delay';
   }
 
