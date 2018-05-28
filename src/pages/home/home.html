@@ -8,12 +8,59 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card (click)="openNews(5)">
-    <ion-card-header>
-      This is the Homepage
-    </ion-card-header>
-    <ion-card-content>
-      Display recent alerts related to the settings of this user.
-    </ion-card-content>
-  </ion-card>
+
+    <ion-card (click)="openNews(1)">
+
+        <img src="img/1.jpg">
+      
+        <ion-item>
+          <ion-icon name="train" item-start large></ion-icon>
+          <h2>1075 - Udarata Manike</h2>
+          <p>Delay</p>
+        </ion-item>
+      
+        <ion-item>
+          <span item-left>10:45:21 AM</span>
+          <span item-left>23rd June</span>
+          <button ion-button icon-left clear item-end>
+            <ion-icon name="navigate"></ion-icon>
+            Read More
+          </button>
+        </ion-item>
+      
+      </ion-card>
+
+      <ion-card (click)="openNews(3)">
+          <img src="img/3.jpg"/>
+          <ion-card-content>
+            <ion-card-title>
+              Mihintale Railway Station renewed
+              </ion-card-title>
+            <p>
+              Mihintale railway station has been renovated by the governmnet funds of ...
+            </p>
+          </ion-card-content>
+      </ion-card>
+
+      <ion-card (click)="openNews(2)">
+
+          <img src="img/2.jpg">
+        
+          <ion-item>
+              <ion-icon name="train" item-start large></ion-icon>
+              <h2>1075 - Udarata Manike</h2>
+              <p>Delay</p>
+            </ion-item>
+          
+            <ion-item>
+              <span item-left>10:45:21 AM</span>
+              <span item-left>23rd June</span>
+              <button ion-button icon-left clear item-end>
+                <ion-icon name="navigate"></ion-icon>
+                Read More
+              </button>
+            </ion-item>    
+        
+        </ion-card>
+          
 </ion-content>
