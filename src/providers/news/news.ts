@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 export class NewsProvider {
 
   constructor(public http: HttpClient) {
-  
+
   }
 
   load() {
@@ -21,7 +21,7 @@ export class NewsProvider {
         console.log(err);
       });
     });
-  }  
+  }
 
   loadNewsItem() {
     return new Promise(resolve => {
@@ -31,5 +31,9 @@ export class NewsProvider {
         console.log(err);
       });
     });
-  }  
+  }
+
+  addNews(phoenNumber: string, trainId: string, newsType: string, delayTime: string, departureTime: string) {
+      return false;
+  }
 }

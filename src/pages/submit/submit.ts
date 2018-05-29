@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NewsProvider } from '../../providers/news/news';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the SubmitPage page.
@@ -13,11 +15,17 @@ import { NavController, NavParams, AlertController, ToastController } from 'ioni
   templateUrl: 'submit.html',
 })
 export class SubmitPage {
-  public data: any;
-
   public type: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+  public trainId: string;
+
+  public newsType: string;
+
+  public delayTime: string;
+
+  public departureTime: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, private storage: Storage, public newsProvider: NewsProvider) {
     this.type = 'Delay';
   }
 
@@ -43,13 +51,25 @@ export class SubmitPage {
         {
           text: 'Agree',
           handler: () => {
-            // Send the news submission using provider
-
-            let toast = this.toastCtrl.create({
-              message: 'Thank you for your support.',
-              duration: 3000
+            var phoenNumber: string;
+            this.storage.get('phoen_number').then((val) => {
+              phoenNumber = val;
             });
-            toast.present();
+            // Send the news submission using provider
+            var status = this.newsProvider.addNews(phoenNumber, this.trainId, this.newsType, this.delayTime, this.departureTime);
+            if (status == true) {
+              let toast = this.toastCtrl.create({
+                message: 'Thank you for your support.',
+                duration: 3000
+              });
+              toast.present();
+            } else {
+              let toast = this.toastCtrl.create({
+                message: 'Could not connect to the server. Please check your internet connection and try again.',
+                duration: 3000
+              });
+              toast.present();
+            }
           }
         }
       ]
