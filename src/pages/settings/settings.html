@@ -109,5 +109,23 @@
       </ion-grid>
     </ion-list>
   </form>
+  <form id="user-profile-form" (ngSubmit)="updateUser()">
+    <ion-list no-lines>
+      <ion-list-header color="light">
+        <ion-label>User Profile</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label stacked>Name</ion-label>
+        <ion-input type="text" placeholder="John Doe"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Phone Number</ion-label>
+        <ion-input type="tel" placeholder="011-2212345"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+  <button ion-button id="user-profile-update-button" form="user-profile-form" type="submit">Update</button>
+  <!--
   <button ion-button id="settings-button" form="settings-form" type="submit">Save</button>
+  -->
 </ion-content>

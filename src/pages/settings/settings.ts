@@ -17,6 +17,8 @@ export class SettingsPage {
 
   notify_sundays: boolean;
 
+  user: User;
+
   constructor(public navCtrl: NavController, private storage: Storage) {
     this.loadSettings()
   }
@@ -45,5 +47,9 @@ export class SettingsPage {
     this.storage.get('notify_sundays').then((val) => {
       this.notify_sundays = val;
     });
+  }
+
+  updateUser() {
+
   }
 }
