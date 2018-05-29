@@ -1,6 +1,5 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 /*
   Generated class for the NewsProvider provider.
 
@@ -9,27 +8,28 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class NewsProvider {
-  private newsUrl: string = 'https://randomuser.me/api/';
 
   constructor(public http: HttpClient) {
-    console.log('Hello NewsProvider Provider');
+  
   }
 
-  getNews() {
-    return this.http.get(this.newsUrl);
-  }
+  load() {
+    return new Promise(resolve => {
+      this.http.get('https://http://18.191.123.53:8080/getnewsheadlines?limit=20').subscribe(data => {
+        resolve(data['news_headlines']);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }  
 
-  addNews(data) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': ''
-      })
-    };
-    return this.http.post(this.newsUrl, data, httpOptions);
-  }
-
-  handleError(f, data) {
-    
-  }
+  loadNewsItem() {
+    return new Promise(resolve => {
+      this.http.get('https://http://18.191.123.53:8080/getnewsdetails?id=20').subscribe(data => {
+        resolve(data['news_details']);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }  
 }

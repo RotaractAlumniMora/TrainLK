@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, Injectable } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http'; 
@@ -18,6 +18,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NewsProvider } from '../providers/news/news';
 import { UserProvider } from '../providers/user/user';
+import { NewsItemsProvider } from '../providers/news-items/news-items';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { UserProvider } from '../providers/user/user';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NewsProvider,
     UserProvider,
+    NewsItemsProvider,
   ]
 })
 export class AppModule {}

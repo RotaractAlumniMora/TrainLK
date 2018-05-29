@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { NewsProvider } from '../../providers/news/news';
 
 /**
  * Generated class for the ViewNewsPage page.
@@ -13,15 +14,20 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'view-news.html',
 })
 export class ViewNewsPage {
-
+  newsItem: any;
   newsId: any;
+  isNewsSet : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public newsProvider: NewsProvider) {
     this.newsId = navParams.get('newsId');
+    this.load();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ViewNewsPage');
-  }
-
+  load() {
+    this.newsProvider.load()
+      .then(data => { 
+        this.newsItem = data;
+        this.isNewsSet = true;
+      });
+    }
 }

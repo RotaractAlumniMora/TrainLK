@@ -8,6 +8,30 @@
 </ion-header>
 
 <ion-content padding>
+      
+
+    <ion-list>
+        <ion-item *ngFor="let newsItem of news">
+
+            <ion-card (click)="openNews(newsItem.id)">
+                <img src="{{newsItem.url}}" />
+                <ion-card-content>
+                  <ion-card-title>
+                      {{newsItem.project_name}}
+                    </ion-card-title>
+                  <p>
+                      {{newsItem.baseline}}
+                  </p>
+                </ion-card-content>
+            </ion-card>
+
+          <ion-avatar item-left>
+            <img src="{{newsItem.project_name}}">
+          </ion-avatar>
+          <h2>{{person.name.first}} {{person.name.last}}</h2>
+          <p>{{person.email}}</p>
+        </ion-item>
+      </ion-list>
 
     <ion-card (click)="openNews(3)">
         <img src="img/4.jpg" />
