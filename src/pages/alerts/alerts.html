@@ -13,7 +13,80 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
 
+    <form (ngSubmit)="submitForm()" id='submit-form'>
+        <ion-item>
+          <ion-label>Railway Line</ion-label>
+          <ion-select>
+            <ion-option>All</ion-option>
+            <ion-option>Coastal Line</ion-option>
+            <ion-option>Kalani Velley Line</ion-option>
+            <ion-option>Main Line</ion-option>
+            <ion-option>Upcountry Line</ion-option>
+            <ion-option>Puttalam Line</ion-option>
+            <ion-option>Mathale Line</ion-option>
+            <ion-option>Batticalo Line</ion-option>
+            <ion-option>Trinco Line</ion-option>
+            <ion-option>Mannar Line</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Type</ion-label>
+          <ion-select>
+            <ion-option>All</ion-option>
+            <ion-option>Delay</ion-option>
+            <ion-option>Cancellation</ion-option>
+            <ion-option>Late Depature</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Day</ion-label>
+          <ion-select>
+            <ion-option>Weekday</ion-option>
+            <ion-option>Saturday</ion-option>
+            <ion-option>Sunday</ion-option>
+            <ion-option>Holiday</ion-option>
+          </ion-select>
+        </ion-item>
+      </form>
+      <button ion-button type="submit" form="submit-form" block>Submit</button>
+      <div *ngIf="hideMe"> 
+      <p>
+          <ion-list>
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <img src="img/1.jpg">
+                </ion-thumbnail>
+                <h2>My Neighbor Totoro</h2>
+                <p>Hayao Miyazaki • 1988</p>
+                <button ion-button clear item-end>View</button>
+              </ion-item>
+          </ion-list>
+        </p>
+       <p>  
+          <ion-list>
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <img src="img/2.jpg">
+                </ion-thumbnail>
+                <h2>My Neighbor Totoro</h2>
+                <p>Hayao Miyazaki • 1988</p>
+                <button ion-button clear item-end>View</button>
+              </ion-item>
+          </ion-list>
+        </p>
+        <p>
+          <ion-list>
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <img src="img/3.jpg">
+                </ion-thumbnail>
+                <h2>My Neighbor Totoro</h2>
+                <p>Hayao Miyazaki • 1988</p>
+                <button ion-button clear item-end>View</button>
+              </ion-item>
+          </ion-list>
+      </p>
+      </div>
 </ion-content>
