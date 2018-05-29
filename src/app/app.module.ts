@@ -17,8 +17,7 @@ import { ViewNewsPage } from '../pages/view-news/view-news';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NewsProvider } from '../providers/news/news';
-import { TrainsProvider } from '../providers/trains/trains';
-import { TimetableProvider } from '../providers/timetable/timetable';
+import { UserProvider } from '../providers/user/user';
 
 @NgModule({
   declarations: [
@@ -55,8 +54,7 @@ import { TimetableProvider } from '../providers/timetable/timetable';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NewsProvider,
-    TrainsProvider,
-    TimetableProvider,
+    UserProvider,
   ]
 })
 export class AppModule {}
