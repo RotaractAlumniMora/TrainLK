@@ -19,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NewsProvider } from '../providers/news/news';
 import { UserProvider } from '../providers/user/user';
 import { NewsItemsProvider } from '../providers/news-items/news-items';
+import { AlertProvider } from '../providers/alert/alert';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { NewsItemsProvider } from '../providers/news-items/news-items';
     NewsProvider,
     UserProvider,
     NewsItemsProvider,
+    AlertProvider,
   ]
 })
 export class AppModule {}
