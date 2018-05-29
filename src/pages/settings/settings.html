@@ -109,18 +109,18 @@
       </ion-grid>
     </ion-list>
   </form>
-  <form id="user-profile-form" (ngSubmit)="updateUser()">
+  <form id="user-profile-form" (ngSubmit)="updateUser()" *ngIf="user">
     <ion-list no-lines>
       <ion-list-header color="light">
         <ion-label>User Profile</ion-label>
       </ion-list-header>
       <ion-item>
         <ion-label stacked>Name</ion-label>
-        <ion-input type="text" placeholder="John Doe"></ion-input>
+        <ion-input type="text" placeholder="John Doe" [(ngModel)]="user.name" name="name_field"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label stacked>Phone Number</ion-label>
-        <ion-input type="tel" placeholder="011-2212345"></ion-input>
+        <ion-input type="tel" placeholder="011-2212345" [(ngModel)]="user.phoneNumber" name="phone_number_field"></ion-input>
       </ion-item>
     </ion-list>
   </form>

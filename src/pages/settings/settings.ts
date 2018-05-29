@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { User } from '../../model/User';
+import { UserProvider } from '../../providers/user/user';
 
 @Component({
   selector: 'page-settings',
@@ -19,8 +21,13 @@ export class SettingsPage {
 
   user: User;
 
-  constructor(public navCtrl: NavController, private storage: Storage) {
-    this.loadSettings()
+  constructor(public navCtrl: NavController, private storage: Storage, public toastCtrl: ToastController, public userProvider: UserProvider) {
+    this.load()
+  }
+
+  load() {
+    this.loadUser();
+    this.loadSettings();
   }
 
   saveSettings() {
@@ -49,7 +56,63 @@ export class SettingsPage {
     });
   }
 
-  updateUser() {
+  loadUser() {
+    let phone_number = '';
+    let username = '';
+    this.storage.get('phone_number').then((val) => {
+      phone_number = val;
+    });
+    this.storage.get('username').then((val) => {
+      username = val;
+    });
+    this.user = new User(username, phone_number);
+  }
 
+  updateUser() {
+    var msg;
+    if (this.user.originalName == this.user.tempName) {
+      if (this.user.originalPhoneNumber == this.user.tempPhoneNumber) {
+        // no change
+        msg = 'You haven\t changed anything yet.';
+      } else {
+        // phone number updated
+        var status = this.userProvider.updateUserPhone(this.user.originalPhoneNumber, this.user.tempPhoneNumber);
+        if (status) {
+          msg = 'Update Success.';
+          this.user = new User(this.user.tempName, this.user.tempPhoneNumber)
+          this.storage.set('phone_number', this.user.phoneNumber);
+        } else {
+          msg = 'Phone number update failed.';
+        }
+      }
+    } else {
+      if (this.user.originalPhoneNumber == this.user.tempPhoneNumber) {
+        // name updated
+        var status = this.userProvider.updateUserName(this.user.originalName, this.user.tempName);
+        if (status) {
+          msg = 'Update Success.';
+          this.user = new User(this.user.tempName, this.user.tempPhoneNumber)
+          this.storage.set('username', this.user.originalName);
+        } else {
+          msg = 'User name update failed.';
+        }
+      } else {
+        // New user
+        var status = this.userProvider.addUser(this.user.tempName, this.user.tempPhoneNumber);
+        if (status) {
+          msg = 'Successfully created new user.';
+          this.storage.set('username', this.user.tempName);
+          this.storage.set('phone_number', this.user.tempPhoneNumber);
+          this.user = new User(this.user.tempName, this.user.tempPhoneNumber)
+        } else {
+          msg = 'Unable to create user.';
+        }
+      }
+    }
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
   }
 }
