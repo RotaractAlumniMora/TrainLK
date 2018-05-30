@@ -20,6 +20,7 @@ import { NewsProvider } from '../providers/news/news';
 import { UserProvider } from '../providers/user/user';
 import { NewsItemsProvider } from '../providers/news-items/news-items';
 import { AlertProvider } from '../providers/alert/alert';
+import { RoutesProvider } from '../providers/routes/routes';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AlertProvider } from '../providers/alert/alert';
     UserProvider,
     NewsItemsProvider,
     AlertProvider,
+    RoutesProvider,
   ]
 })
 export class AppModule {}
