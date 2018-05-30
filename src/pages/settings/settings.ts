@@ -1,114 +1,83 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { User } from '../../model/User';
 import { UserProvider } from '../../providers/user/user';
+import { RoutesProvider } from '../../providers/routes/routes';
 
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-  preferred_line: string;
+  // User Related informartion
+  userName: string;
 
-  show_notifications: boolean;
+  // Subscription based information
+  _preferredRoute: string;
 
-  notify_weekdays: boolean;
+  startStation: string;
 
-  notify_saturdays: boolean;
+  endStation: string;
 
-  notify_sundays: boolean;
+  notifySaturday: boolean;
 
-  user: User;
+  routes: any;
 
-  constructor(public navCtrl: NavController, private storage: Storage, public toastCtrl: ToastController, public userProvider: UserProvider) {
+  routeStations: any;
+
+  constructor(
+    public navCtrl: NavController,
+    private storage: Storage,
+    public toastCtrl: ToastController,
+    public userProvider: UserProvider,
+    public routesProvider: RoutesProvider
+  ) {
     this.load()
   }
 
   load() {
+    this.loadRoutes();
     this.loadUser();
-    this.loadSettings();
   }
 
-  saveSettings() {
-    this.storage.set('preferred_line', this.preferred_line);
-    this.storage.set('show_notifications', this.show_notifications);
-    this.storage.set('notify_weekdays', this.notify_weekdays);
-    this.storage.set('notify_saturdays', this.notify_saturdays);
-    this.storage.set('notify_sundays', this.notify_sundays);
+  set preferredRoute(val) {
+    if (this._preferredRoute != val) {
+      this._preferredRoute = val;
+      this.loadRouteStations();
+    }
   }
 
-  loadSettings() {
-    this.storage.get('preferred_line').then((val) => {
-      this.preferred_line = val;
-    });
-    this.storage.get('show_notifications').then((val) => {
-      this.show_notifications = val;
-    });
-    this.storage.get('notify_weekdays').then((val) => {
-      this.notify_weekdays = val;
-    });
-    this.storage.get('notify_saturdays').then((val) => {
-      this.notify_saturdays = val;
-    });
-    this.storage.get('notify_sundays').then((val) => {
-      this.notify_sundays = val;
-    });
+  get preferredRoute() {
+    return this._preferredRoute;
+  }
+
+  loadRoutes() {
+    this.routesProvider.getRoutes().subscribe(data => this.routes = data['routes']);
+  }
+
+  loadRouteStations() {
+    this.routesProvider.getRouteStations(this.preferredRoute).subscribe(data => {
+      this.routeStations = data['stations'];
+      this.startStation = this.routeStations[0];
+      this.endStation = this.routeStations[0];
+    })
   }
 
   loadUser() {
-    let phone_number = '';
-    let username = '';
-    this.storage.get('phone_number').then((val) => {
-      phone_number = val;
+    this.storage.get('user_name').then((val) => {
+      this.userName = val;
     });
-    this.storage.get('username').then((val) => {
-      username = val;
-    });
-    this.user = new User(username, phone_number);
   }
 
   updateUser() {
-    var msg;
-    if (this.user.originalName == this.user.tempName) {
-      if (this.user.originalPhoneNumber == this.user.tempPhoneNumber) {
-        // no change
-        msg = 'You haven\t changed anything yet.';
-      } else {
-        // phone number updated
-        var status = this.userProvider.updateUserPhone(this.user.originalPhoneNumber, this.user.tempPhoneNumber);
-        if (status) {
-          msg = 'Update Success.';
-          this.user = new User(this.user.tempName, this.user.tempPhoneNumber)
-          this.storage.set('phone_number', this.user.phoneNumber);
-        } else {
-          msg = 'Phone number update failed.';
-        }
-      }
-    } else {
-      if (this.user.originalPhoneNumber == this.user.tempPhoneNumber) {
-        // name updated
-        var status = this.userProvider.updateUserName(this.user.originalName, this.user.tempName);
-        if (status) {
-          msg = 'Update Success.';
-          this.user = new User(this.user.tempName, this.user.tempPhoneNumber)
-          this.storage.set('username', this.user.originalName);
-        } else {
-          msg = 'User name update failed.';
-        }
-      } else {
-        // New user
-        var status = this.userProvider.addUser(this.user.tempName, this.user.tempPhoneNumber);
-        if (status) {
-          msg = 'Successfully created new user.';
-          this.storage.set('username', this.user.tempName);
-          this.storage.set('phone_number', this.user.tempPhoneNumber);
-          this.user = new User(this.user.tempName, this.user.tempPhoneNumber)
-        } else {
-          msg = 'Unable to create user.';
-        }
-      }
-    }
+    this.storage.set('user_name', this.routeStations);
+  }
+
+  saveSubscriptions() {
+
+  }
+
+  showToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
       duration: 3000
