@@ -18,8 +18,8 @@
     <form (ngSubmit)="submitForm()" id='submit-form'>
         <ion-item>
           <ion-label>Railway Line</ion-label>
-          <ion-select>
-            <ion-option>All</ion-option>
+          <ion-select [(ngModel)]="preferred_line" name='preferred_line'>
+            <ion-option id="allLines">All</ion-option>
             <ion-option>Coastal Line</ion-option>
             <ion-option>Kalani Velley Line</ion-option>
             <ion-option>Main Line</ion-option>
@@ -33,7 +33,7 @@
         </ion-item>
         <ion-item>
           <ion-label>Type</ion-label>
-          <ion-select>
+          <ion-select [(ngModel)]="notify_type" name='notify_type'>
             <ion-option>All</ion-option>
             <ion-option>Delay</ion-option>
             <ion-option>Cancellation</ion-option>
@@ -42,7 +42,7 @@
         </ion-item>
         <ion-item>
           <ion-label>Day</ion-label>
-          <ion-select>
+          <ion-select [(ngModel)]="notify_days" name='notify_days'>
             <ion-option>Weekday</ion-option>
             <ion-option>Saturday</ion-option>
             <ion-option>Sunday</ion-option>
@@ -52,7 +52,7 @@
       </form>
       <button ion-button type="submit" form="submit-form" block>Submit</button>
       
-      <div *ngIf="hideMe"> 
+      <div *ngIf="isAlertsLoaded"> 
       <p>
           <ion-list>
               <ion-item>

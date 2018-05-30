@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NewsProvider } from '../../providers/news/news';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the ViewNewsPage page.
@@ -23,8 +24,8 @@ export class ViewNewsPage {
     this.load();
   }
 
-  load() {
-    this.newsProvider.load()
+  load(){
+    this.newsProvider.loadNewsItem(this.newsId)
       .then(data => { 
         this.newsItem = data;
         this.isNewsSet = true;
