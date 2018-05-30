@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { NewsProvider } from '../../providers/news/news';
 import { Storage } from '@ionic/storage';
+import { RoutesProvider } from '../../providers/routes/routes';
 
 /**
  * Generated class for the SubmitPage page.
@@ -25,7 +26,7 @@ export class SubmitPage {
 
   public departureTime: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, private storage: Storage, public newsProvider: NewsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, private storage: Storage, public newsProvider: NewsProvider, public routesProvider: RoutesProvider) {
     this.type = 'Delay';
   }
 
