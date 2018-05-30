@@ -14,15 +14,15 @@ export class UserProvider {
     console.log('Hello UserProvider Provider');
   }
 
-  adduser(name: string, phoneNum: string) {
-
+  addUser(name: string, phoneNum: string) {
+    return true;
   }
 
   updateUserName(newName: string, phoneNum: string) {
-
+    return false;
   }
 
   updateUserPhone(oldPhoneNum: string, newPhoneNum: string) {
-
+    return false;
   }
 }
