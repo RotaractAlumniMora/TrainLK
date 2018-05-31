@@ -39,16 +39,16 @@
         </ion-select>
       </ion-item>
 
-      <ion-item *ngIf="hasStations">
+      <ion-item>
         <ion-label>Start Station</ion-label>
-        <ion-select [(ngModel)]="startStation" name='start_station'>
+        <ion-select [(ngModel)]="startStation" name='start_station' disabled ="{{!hasStations}}">
           <ion-option *ngFor="let item of routeStations">{{item}}</ion-option>
         </ion-select>
       </ion-item>
 
-      <ion-item *ngIf="hasStations">
+      <ion-item>
         <ion-label>End Station</ion-label>
-        <ion-select [(ngModel)]="endStation" name='end_station'>
+        <ion-select [(ngModel)]="endStation" name='end_station' disabled ="{{!hasStations}}">
           <ion-option *ngFor="let item of routeStations">{{item}}</ion-option>
         </ion-select>
       </ion-item>

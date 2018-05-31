@@ -59,12 +59,11 @@ export class SettingsPage {
   }
 
   loadRouteStations() {
-    this.routeStations = [];
     this.routesProvider.getRouteStations(this.preferredRoute).subscribe(data => {
       this.routeStations = data['stations'];
       this.startStation = this.routeStations[0];
       this.endStation = this.routeStations[0];
-      this.hasStations = (this.routeStations.length > 0);
+      this.hasStations = this.routeStations.length > 0;
     })
   }
 
