@@ -19,16 +19,22 @@ export class ViewNewsPage {
   newsId: any;
   isNewsSet : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public newsProvider: NewsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public newsProvider: NewsProvider, public loadingCtrl: LoadingController) {
     this.newsId = navParams.get('newsId');
     this.load();
   }
 
   load(){
+    let loader = this.loadingCtrl.create({
+      content: "Please Wait",
+    });
+    loader.present();
     this.newsProvider.loadNewsItem(this.newsId)
       .then(data => { 
         this.newsItem = data;
         this.isNewsSet = true;
       });
+    loader.dismiss();
     }
+
 }
