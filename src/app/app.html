@@ -1,54 +1,86 @@
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="first-time" *ngIf="firstTime;else other_content">
+  <ion-slides pager>
+    <ion-slide>
+      <ion-toolbar>
+        <ion-buttons end>
+        </ion-buttons>
+      </ion-toolbar>
+      <h2>Welcome to TrainLK</h2>
+      <h3>Lets get Started!</h3>
+    </ion-slide>
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <h2 class="slide-title">Ready to Play?</h2>
+      <form (ngSubmit)="submitForm()">
+        <ion-item>
+          <ion-label floating>Your Name</ion-label>
+          <ion-input type="text" name="title"></ion-input> <!--  [(ngModel)]="todo.title" -->
+        </ion-item>
+        <button ion-button large clear icon-end color="primary">
+          Continue
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </form>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
 
-  <ion-content>
-    <ion-list no-lines>
-      <button ion-item menuClose (click)="openPage('Home')">
-        <ion-avatar item-left>
-          <img src="assets/imgs/logo.png">
-        </ion-avatar>
-        <h2>TrainLK</h2>
-        <p>Rotaract Alumni Mora</p>
-      </button>
-      <ion-item-divider color="light">News</ion-item-divider>
-      <ion-item menuClose (click)="openPage('Alerts')">
-        <ion-label>
-          Alerts
-        </ion-label>
-        <ion-icon name='search' item-right></ion-icon>
-      </ion-item>
-      <ion-item menuClose (click)="openPage('Submit')">
-        <ion-label>
+
+<ng-template #other_content>
+
+  <ion-menu [content]="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list no-lines>
+        <button ion-item menuClose (click)="openPage('Home')">
+          <ion-avatar item-left>
+            <img src="assets/imgs/logo.png">
+          </ion-avatar>
+          <h2>TrainLK</h2>
+          <p>Rotaract Alumni Mora</p>
+        </button>
+        <ion-item-divider color="light">News</ion-item-divider>
+        <ion-item menuClose (click)="openPage('Alerts')">
+          <ion-label>
+            Alerts
+          </ion-label>
+          <ion-icon name='search' item-right></ion-icon>
+        </ion-item>
+        <ion-item menuClose (click)="openPage('Submit')">
+          <ion-label>
             Submit
-        </ion-label>
-        <ion-icon name='add-circle' item-right></ion-icon>
-      </ion-item>
-      <ion-item-divider color="light">Other</ion-item-divider>
-      <ion-item menuClose (click)="openPage('Timetable')">
-        <ion-label>
+          </ion-label>
+          <ion-icon name='add-circle' item-right></ion-icon>
+        </ion-item>
+        <ion-item-divider color="light">Other</ion-item-divider>
+        <ion-item menuClose (click)="openPage('Timetable')">
+          <ion-label>
             Timetable
-        </ion-label>
-        <ion-icon name='clock' item-right></ion-icon>
-      </ion-item>
-      <ion-item menuClose (click)="openPage('Settings')">
-        <ion-label>
+          </ion-label>
+          <ion-icon name='clock' item-right></ion-icon>
+        </ion-item>
+        <ion-item menuClose (click)="openPage('Settings')">
+          <ion-label>
             Settings
-        </ion-label>
-        <ion-icon name='settings' item-right></ion-icon>
-      </ion-item>
-      <ion-item menuClose (click)="openPage('About Us')">
-        <ion-label>
+          </ion-label>
+          <ion-icon name='settings' item-right></ion-icon>
+        </ion-item>
+        <ion-item menuClose (click)="openPage('About Us')">
+          <ion-label>
             About Us
-        </ion-label>
-        <ion-icon name='information-circle' item-right></ion-icon>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
+          </ion-label>
+          <ion-icon name='information-circle' item-right></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+</ng-template>
