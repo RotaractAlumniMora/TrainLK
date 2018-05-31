@@ -46,9 +46,13 @@ export class SubmitPage {
   }
 
   load() {
-    this.routesProvider.getRoutes().subscribe(data => this.routes = data['routes']);
+    this.loadRoutes()
   }
 
+  loadRoutes(): any {
+    this.routesProvider.getRoutes().subscribe(data => this.routes = data['routes']);
+  }
+  
   submitForm() {
     let confirm = this.alertCtrl.create({
       title: 'Varification needed',

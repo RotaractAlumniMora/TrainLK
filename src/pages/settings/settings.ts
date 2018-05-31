@@ -21,9 +21,9 @@ export class SettingsPage {
 
   notifySaturday: boolean;
 
-  hasStations: boolean;
-
   routes: any;
+
+  hasStations: boolean;
 
   routeStations: any;
 
@@ -61,9 +61,11 @@ export class SettingsPage {
   loadRouteStations() {
     this.routesProvider.getRouteStations(this.preferredRoute).subscribe(data => {
       this.routeStations = data['stations'];
-      this.startStation = this.routeStations[0];
-      this.endStation = this.routeStations[0];
       this.hasStations = this.routeStations.length > 0;
+      if (this.hasStations) {
+        this.startStation = this.routeStations[0];
+        this.endStation = this.routeStations[0];
+      }
     })
   }
 
