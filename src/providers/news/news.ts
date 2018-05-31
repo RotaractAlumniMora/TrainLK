@@ -15,7 +15,14 @@ export class NewsProvider {
 
   load() {
     return new Promise(resolve => {
-      this.http.get('https://http://18.191.123.53:8080/getnewsheadlines?limit=20').subscribe(data => {
+      this.http.post('http://18.191.123.53:8080/ws-mapmytrain/v1/C461D3C23C7E7264726A8D1DD5E/getnewsheadlines', 
+      { 
+        limit : 20,
+      }, 
+      {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .subscribe(data => {
         resolve(data['news_headlines']);
       }, err => {
         console.log(err);
@@ -23,9 +30,16 @@ export class NewsProvider {
     });
   }
 
-  loadNewsItem() {
+  loadNewsItem(id) {
     return new Promise(resolve => {
-      this.http.get('https://http://18.191.123.53:8080/getnewsdetails?id=20').subscribe(data => {
+      this.http.post('http://18.191.123.53:8080/ws-mapmytrain/v1/C461D3C23C7E7264726A8D1DD5E/getnewsdetails', 
+      { 
+        id : id,
+      }, 
+      {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .subscribe(data => {
         resolve(data['news_details']);
       }, err => {
         console.log(err);

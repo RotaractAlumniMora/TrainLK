@@ -8,13 +8,9 @@
 </ion-header>
 
 <ion-content padding>
-      
 
-    <ion-list>
-        <ion-item *ngFor="let newsItem of news">
-
-            <ion-card (click)="openNews(newsItem.id)">
-                <img src="{{newsItem.url}}" />
+     <ion-card (click)="openNews(newsItem.id)" *ngFor="let newsItem of news">
+         <img src="{{newsItem.url}}" />
                 <ion-card-content>
                   <ion-card-title>
                       {{newsItem.project_name}}
@@ -22,69 +18,9 @@
                   <p>
                       {{newsItem.baseline}}
                   </p>
-                </ion-card-content>
-            </ion-card>
-
-          <ion-avatar item-left>
-            <img src="{{newsItem.project_name}}">
-          </ion-avatar>
-          <h2>{{person.name.first}} {{person.name.last}}</h2>
-          <p>{{person.email}}</p>
-        </ion-item>
-      </ion-list>
-
-    <ion-card (click)="openNews(3)">
-        <img src="img/4.jpg" />
-        <ion-card-content>
-          <ion-card-title>
-            Rotaract Distrcit Conference
-            </ion-card-title>
-          <p>
-            The most popular industrial group ever, and largely
-            responsible for bringing the music to a mass audience.
-          </p>
-        </ion-card-content>
-    </ion-card>
-
-      <ion-card (click)="openNews(3)">
-          <img src="img/3.jpg"/>
-          <ion-card-content>
-            <ion-card-title>
-              Mihintale Railway Station renovated
-              </ion-card-title>
-            <p>
-              Mihintale railway station has been renovated by the governmnet funds of ...
-            </p>
-          </ion-card-content>
-      </ion-card>
-
-      <ion-card (click)="openNews(3)">
-          <img src="img/5.jpg" />
-          <ion-card-content>
-            <ion-card-title>
-              Aharunu Akuru Phase 2.6
-              </ion-card-title>
-            <p>
-              The most popular industrial group ever, and largely
-              responsible for bringing the music to a mass audience.
-            </p>
-          </ion-card-content>
-      </ion-card>
-
-      <ion-card (click)="openNews(3)">
-          <img src="img/6.jpg" />
-          <ion-card-content>
-            <ion-card-title>
-              Hela Kam Kala - Rotaract Club of Moratuwa Univeristy 
-              </ion-card-title>
-            <p>
-              The most popular industrial group ever, and largely
-              responsible for bringing the music to a mass audience.
-            </p>
-          </ion-card-content>
-      </ion-card>
-     
-          
+                </ion-card-content>       
+    </ion-card>       
+        
 </ion-content>
 
 <ion-footer>
