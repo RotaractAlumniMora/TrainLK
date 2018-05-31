@@ -26,12 +26,27 @@ export class SubmitPage {
 
   public departureTime: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, private storage: Storage, public newsProvider: NewsProvider, public routesProvider: RoutesProvider) {
+  public routes: any;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
+    private storage: Storage,
+    public newsProvider: NewsProvider,
+    public routesProvider: RoutesProvider
+  ) {
     this.type = 'Delay';
+    this.load();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubmitPage');
+  }
+
+  load() {
+    this.routesProvider.getRoutes().subscribe(data => this.routes = data['routes']);
   }
 
   submitForm() {
