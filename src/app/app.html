@@ -12,10 +12,10 @@
       <ion-toolbar>
       </ion-toolbar>
       <h2 class="slide-title">Ready to Play?</h2>
-      <form (ngSubmit)="submitForm()">
+      <form (ngSubmit)="registerUser()">
         <ion-item>
           <ion-label floating>Your Name</ion-label>
-          <ion-input type="text" name="title"></ion-input> <!--  [(ngModel)]="todo.title" -->
+          <ion-input type="text" name="title" [(ngModel)]="username"></ion-input>
         </ion-item>
         <button ion-button large clear icon-end color="primary">
           Continue
@@ -28,7 +28,6 @@
 
 
 <ng-template #other_content>
-
   <ion-menu [content]="content">
     <ion-header>
       <ion-toolbar>

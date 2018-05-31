@@ -11,6 +11,7 @@ import { TimetablePage } from '../pages/timetable/timetable';
 import { AlertsPage } from '../pages/alerts/alerts';
 
 import { Slides } from 'ionic-angular';
+import { UserProvider } from '../providers/user/user';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,11 +23,18 @@ export class MyApp {
 
   firstTime: boolean;
 
+  username: string;
+
   @ViewChild(Slides) slides: Slides;
 
   pages: { [title: string]: any };
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public userProvider: UserProvider
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -38,6 +46,7 @@ export class MyApp {
     this.pages['Timetable'] = TimetablePage;
     this.pages['About Us'] = AboutUsPage;
     this.firstTime = true;
+    this.username = '';
   }
 
   initializeApp() {
@@ -55,7 +64,7 @@ export class MyApp {
     this.nav.setRoot(this.pages[page]);
   }
 
-  submitForm() {
-    this.firstTime = false;
+  registerUser() {
+    this.firstTime = !this.userProvider.addUser(this.username);
   }
 }
