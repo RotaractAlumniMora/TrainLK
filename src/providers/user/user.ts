@@ -10,19 +10,18 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(
+    public http: HttpClient
+  ) {
     console.log('Hello UserProvider Provider');
   }
 
-  addUser(name: string, phoneNum: string) {
-    return true;
-  }
-
-  updateUserName(newName: string, phoneNum: string) {
-    return false;
-  }
-
-  updateUserPhone(oldPhoneNum: string, newPhoneNum: string) {
-    return false;
+  addUser(name: string) {
+    if (name != '') {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }
