@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- User Details Form -->
+  <!-- User Details Form 
   <form id="user-profile-form" (ngSubmit)="updateUser()">
     <ion-list no-lines>
       <ion-list-header color="light">
@@ -27,14 +27,11 @@
     </ion-list>
   </form>
   <button ion-button id="user-profile-update-button" form="user-profile-form" type="submit">Update</button>
+  -->
 
   <!-- Subscriptions Form -->
   <form id="subscriptions-form" (ngSubmit)="saveSubscriptions()" class="list">
     <ion-list no-lines>
-      <ion-list-header color="light">
-        <ion-label>Subscriptions</ion-label>
-      </ion-list-header>
-
       <ion-item>
         <ion-label>Preferred Line</ion-label>
         <ion-select [(ngModel)]="preferredRoute" name="preferred_line">
@@ -42,14 +39,14 @@
         </ion-select>
       </ion-item>
 
-      <ion-item>
+      <ion-item *ngIf="hasStations">
         <ion-label>Start Station</ion-label>
         <ion-select [(ngModel)]="startStation" name='start_station'>
           <ion-option *ngFor="let item of routeStations">{{item}}</ion-option>
         </ion-select>
       </ion-item>
 
-      <ion-item>
+      <ion-item *ngIf="hasStations">
         <ion-label>End Station</ion-label>
         <ion-select [(ngModel)]="endStation" name='end_station'>
           <ion-option *ngFor="let item of routeStations">{{item}}</ion-option>
@@ -103,5 +100,5 @@
       </ion-grid>
     </ion-list>
   </form>
-  <button ion-button id="subscriptions-update-button" form="subscriptions-form" type="submit">Update</button>
+  <button ion-button id="subscriptions-update-button" form="subscriptions-form" type="submit" block>Update</button>
 </ion-content>
