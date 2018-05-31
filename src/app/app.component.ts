@@ -10,6 +10,8 @@ import { SubmitPage } from '../pages/submit/submit';
 import { TimetablePage } from '../pages/timetable/timetable';
 import { AlertsPage } from '../pages/alerts/alerts';
 
+import { Slides } from 'ionic-angular';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -17,6 +19,10 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
+
+  firstTime: boolean;
+
+  @ViewChild(Slides) slides: Slides;
 
   pages: { [title: string]: any };
 
@@ -31,6 +37,7 @@ export class MyApp {
     this.pages['Settings'] = SettingsPage;
     this.pages['Timetable'] = TimetablePage;
     this.pages['About Us'] = AboutUsPage;
+    this.firstTime = true;
   }
 
   initializeApp() {
@@ -46,5 +53,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(this.pages[page]);
+  }
+
+  submitForm() {
+    this.firstTime = false;
   }
 }

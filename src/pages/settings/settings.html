@@ -5,37 +5,54 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Settings</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content>
-  <form id="settings-form" (ngSubmit)="saveSettings()" class="list">
+<ion-content padding>
+  <!-- User Details Form -->
+  <form id="user-profile-form" (ngSubmit)="updateUser()">
     <ion-list no-lines>
       <ion-list-header color="light">
-        <ion-label>Notifications</ion-label>
-        <ion-toggle [(ngModel)]="show_notifications" name='show_notifications'></ion-toggle>
+        <ion-label>User Profile</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label stacked>Name</ion-label>
+        <ion-input type="text" placeholder="John Doe" [(ngModel)]="userName" name="name_field"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+  <button ion-button id="user-profile-update-button" form="user-profile-form" type="submit">Update</button>
+
+  <!-- Subscriptions Form -->
+  <form id="subscriptions-form" (ngSubmit)="saveSubscriptions()" class="list">
+    <ion-list no-lines>
+      <ion-list-header color="light">
+        <ion-label>Subscriptions</ion-label>
       </ion-list-header>
 
       <ion-item>
         <ion-label>Preferred Line</ion-label>
-        <ion-select [(ngModel)]="preferred_line" name='preferred_line'>
-          <ion-option>Coastal Line</ion-option>
-          <ion-option>Kalani Velley Line</ion-option>
-          <ion-option>Main Line</ion-option>
-          <ion-option>Upcountry Line</ion-option>
-          <ion-option>Puttalam Line</ion-option>
-          <ion-option>Mathale Line</ion-option>
-          <ion-option>Batticalo Line</ion-option>
-          <ion-option>Trinco Line</ion-option>
-          <ion-option>Mannar Line</ion-option>
+        <ion-select [(ngModel)]="preferredRoute" name="preferred_line">
+          <ion-option *ngFor="let item of routes" value={{item[0]}}>{{item[1]}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Start Station</ion-label>
+        <ion-select [(ngModel)]="startStation" name='start_station'>
+          <ion-option *ngFor="let item of routeStations">{{item}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>End Station</ion-label>
+        <ion-select [(ngModel)]="endStation" name='end_station'>
+          <ion-option *ngFor="let item of routeStations">{{item}}</ion-option>
         </ion-select>
       </ion-item>
 
@@ -43,19 +60,19 @@
         <ion-row>
           <ion-item>
             <ion-label>Weekdays</ion-label>
-            <ion-toggle [(ngModel)]="notify_weekdays" name='notify_weekdays'></ion-toggle>
+            <ion-toggle [(ngModel)]="notifyWeekdays" name='notify_weekdays'></ion-toggle>
           </ion-item>
         </ion-row>
-        <ion-row *ngIf='notify_weekdays'>
+        <ion-row *ngIf='notifyWeekdays'>
           <ion-col col-6>
             <ion-item>
-              <ion-label>Start</ion-label>
+              <ion-label stacked>Start</ion-label>
               <ion-datetime displayFormat="h:mm:A"></ion-datetime>
             </ion-item>
           </ion-col>
           <ion-col col-6>
             <ion-item>
-              <ion-label>End</ion-label>
+              <ion-label stacked>End</ion-label>
               <ion-datetime displayFormat="h:mm:A"></ion-datetime>
             </ion-item>
           </ion-col>
@@ -65,43 +82,20 @@
       <ion-grid>
         <ion-row>
           <ion-item>
-            <ion-label>Saturdays</ion-label>
-            <ion-toggle [(ngModel)]="notify_saturdays" name='notify_saturdays'></ion-toggle>
+            <ion-label>Saturday</ion-label>
+            <ion-toggle [(ngModel)]="notifySaturday" name='notify_saturday'></ion-toggle>
           </ion-item>
         </ion-row>
-        <ion-row *ngIf='notify_saturdays'>
+        <ion-row *ngIf='notifySaturday'>
           <ion-col col-6>
             <ion-item>
-              <ion-label>Start</ion-label>
+              <ion-label stacked>Start</ion-label>
               <ion-datetime displayFormat="h:mm:A"></ion-datetime>
             </ion-item>
           </ion-col>
           <ion-col col-6>
             <ion-item>
-              <ion-label>End</ion-label>
-              <ion-datetime displayFormat="h:mm:A"></ion-datetime>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-      <ion-grid>
-        <ion-row>
-          <ion-item>
-            <ion-label>Sundays/Holidays</ion-label>
-            <ion-toggle [(ngModel)]="notify_sundays" name='notify_sundays'></ion-toggle>
-          </ion-item>
-        </ion-row>
-        <ion-row *ngIf='notify_sundays'>
-          <ion-col col-6>
-            <ion-item>
-              <ion-label>Start</ion-label>
-              <ion-datetime displayFormat="h:mm:A"></ion-datetime>
-            </ion-item>
-          </ion-col>
-          <ion-col col-6>
-            <ion-item>
-              <ion-label>End</ion-label>
+              <ion-label stacked>End</ion-label>
               <ion-datetime displayFormat="h:mm:A"></ion-datetime>
             </ion-item>
           </ion-col>
@@ -109,23 +103,5 @@
       </ion-grid>
     </ion-list>
   </form>
-  <form id="user-profile-form" (ngSubmit)="updateUser()" *ngIf="user">
-    <ion-list no-lines>
-      <ion-list-header color="light">
-        <ion-label>User Profile</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label stacked>Name</ion-label>
-        <ion-input type="text" placeholder="John Doe" [(ngModel)]="user.name" name="name_field"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Phone Number</ion-label>
-        <ion-input type="tel" placeholder="011-2212345" [(ngModel)]="user.phoneNumber" name="phone_number_field"></ion-input>
-      </ion-item>
-    </ion-list>
-  </form>
-  <button ion-button id="user-profile-update-button" form="user-profile-form" type="submit">Update</button>
-  <!--
-  <button ion-button id="settings-button" form="settings-form" type="submit">Save</button>
-  -->
+  <button ion-button id="subscriptions-update-button" form="subscriptions-form" type="submit">Update</button>
 </ion-content>

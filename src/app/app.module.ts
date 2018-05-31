@@ -20,7 +20,11 @@ import { NewsProvider } from '../providers/news/news';
 import { UserProvider } from '../providers/user/user';
 import { NewsItemsProvider } from '../providers/news-items/news-items';
 import { AlertProvider } from '../providers/alert/alert';
+<<<<<<< HEAD
 import { TimetableProvider } from '../providers/timetable/timetable';
+=======
+import { RoutesProvider } from '../providers/routes/routes';
+>>>>>>> e2445b69c99352a0ae895de81f8942027d275d29
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { TimetableProvider } from '../providers/timetable/timetable';
     UserProvider,
     NewsItemsProvider,
     AlertProvider,
+<<<<<<< HEAD
     TimetableProvider,
+=======
+    RoutesProvider,
+>>>>>>> e2445b69c99352a0ae895de81f8942027d275d29
   ]
 })
 export class AppModule {}
