@@ -23,6 +23,8 @@ export class SettingsPage {
 
   routes: any;
 
+  hasStations: boolean;
+
   routeStations: any;
 
   constructor(
@@ -42,6 +44,7 @@ export class SettingsPage {
 
   set preferredRoute(val) {
     if (this._preferredRoute != val) {
+      this.hasStations = false;
       this._preferredRoute = val;
       this.loadRouteStations();
     }
@@ -58,8 +61,11 @@ export class SettingsPage {
   loadRouteStations() {
     this.routesProvider.getRouteStations(this.preferredRoute).subscribe(data => {
       this.routeStations = data['stations'];
-      this.startStation = this.routeStations[0];
-      this.endStation = this.routeStations[0];
+      this.hasStations = this.routeStations.length > 0;
+      if (this.hasStations) {
+        this.startStation = this.routeStations[0];
+        this.endStation = this.routeStations[0];
+      }
     })
   }
 
@@ -67,10 +73,6 @@ export class SettingsPage {
     this.storage.get('user_name').then((val) => {
       this.userName = val;
     });
-  }
-
-  updateUser() {
-    this.storage.set('user_name', this.routeStations);
   }
 
   saveSubscriptions() {
