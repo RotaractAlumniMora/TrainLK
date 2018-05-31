@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,  AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { AlertProvider } from '../../providers/alert/alert';
 
 /**
  * Generated class for the AlertsPage page.
@@ -12,27 +13,37 @@ import { LoadingController } from 'ionic-angular';
 @Component({
   selector: 'page-alerts',
   templateUrl: 'alerts.html',
+  providers: [AlertProvider]
 })
 export class AlertsPage {
   isAlertsLoaded: boolean;
   preferred_line: string;
   notify_type: string;
   notify_days :string;
+  alerts : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertProvider , public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
   }
-
 
   submitForm() {
+    if(!this.preferred_line || !this.notify_days || !this.notify_days) {
+      const toast = this.toastCtrl.create({
+        message: 'All fields are required fields',
+        duration: 3000
+      });
+      toast.present();
+    }
+
     let loader = this.loadingCtrl.create({
       content: "Alerts Loading...",
+      duration: 3000
     });
     loader.present();
-  
-    this.isAlertsLoaded = true;
-
+    this.alertCtrl.load(this.preferred_line, this.notify_days, this.notify_type)
+      .then(data => { 
+        this.alerts= data;
+        this.isAlertsLoaded = true;
+      });
     loader.dismiss();
   }
-
-
 }

@@ -13,10 +13,19 @@ export class AlertProvider {
   constructor(public http: HttpClient) {
   }
 
-  load() {
+  load(line, date, type) {
     return new Promise(resolve => {
-      this.http.get('https://http://18.191.123.53:8080/getnewsheadlines?limit=20').subscribe(data => {
-        resolve(data['news_headlines']);
+      this.http.post('http://18.191.123.53:8080/ws-mapmytrain/v1/C461D3C23C7E7264726A8D1DD5E/searchalerts', 
+      { 
+        "line" : line,
+        "date" : date,
+        "type" : type
+      }, 
+      {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .subscribe(data => {
+        resolve(data['status']);
       }, err => {
         console.log(err);
       });

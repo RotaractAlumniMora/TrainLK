@@ -30,7 +30,7 @@ export class TimetablePage {
   }
 
   submitForm(){
-    alert()
+  
     if(!this.startLocation || !this.endTime || !this.endLocation || !this.startTime || !this.date) {
       const toast = this.toastCtrl.create({
         message: 'All fields are required fields',

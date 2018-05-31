@@ -19,69 +19,47 @@
         <ion-item>
           <ion-label>Railway Line</ion-label>
           <ion-select [(ngModel)]="preferred_line" name='preferred_line'>
-            <ion-option id="allLines">All</ion-option>
-            <ion-option>Coastal Line</ion-option>
-            <ion-option>Kalani Velley Line</ion-option>
-            <ion-option>Main Line</ion-option>
-            <ion-option>Upcountry Line</ion-option>
-            <ion-option>Puttalam Line</ion-option>
-            <ion-option>Mathale Line</ion-option>
-            <ion-option>Batticalo Line</ion-option>
-            <ion-option>Trinco Line</ion-option>
-            <ion-option>Mannar Line</ion-option>
+            <ion-option value="0">All</ion-option>
+            <ion-option value="8">Coastal Line</ion-option>
+            <ion-option value="9">Kalani Velley Line</ion-option>
+            <ion-option value="1">Main Line</ion-option>
+            <ion-option value="3">Puttalam Line</ion-option>
+            <ion-option value="2">Mathale Line</ion-option>
+            <ion-option value="6">Batticalo Line</ion-option>
+            <ion-option value="4">Northern Line</ion-option>
+            <ion-option value="5">Mannar Line</ion-option>
+            <ion-option value="7">Trincomalee Line</ion-option>
+            <ion-option value="10">Mihintale Line</ion-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label>Type</ion-label>
           <ion-select [(ngModel)]="notify_type" name='notify_type'>
-            <ion-option>All</ion-option>
-            <ion-option>Delay</ion-option>
-            <ion-option>Cancellation</ion-option>
-            <ion-option>Late Depature</ion-option>
+            <ion-option value="0">All</ion-option>
+            <ion-option value="1">Delay</ion-option>
+            <ion-option value="2">Cancellation</ion-option>
+            <ion-option value="3">Late Depature</ion-option>
           </ion-select>
         </ion-item>
-        <ion-item>
-          <ion-label>Day</ion-label>
-          <ion-select [(ngModel)]="notify_days" name='notify_days'>
-            <ion-option>Weekday</ion-option>
-            <ion-option>Saturday</ion-option>
-            <ion-option>Sunday</ion-option>
-            <ion-option>Holiday</ion-option>
-          </ion-select>
-        </ion-item>
-      </form>
-      <button ion-button type="submit" form="submit-form" block>Submit</button>
+      <ion-item>
+          <ion-label>Date</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date" name="date"></ion-datetime>
+      </ion-item>
+    </form>
+    <button ion-button type="submit" form="submit-form" block>Submit</button>
       
-      <div *ngIf="isAlertsLoaded"> 
-      <p>
-          <ion-list>
-              <ion-item>
-                <ion-thumbnail item-start>
-                  <img src="img/1.jpg">
-                </ion-thumbnail>
-                <h2>My Neighbor Totoro</h2>
-                <p>Hayao Miyazaki • 1988</p>
-                <button ion-button clear item-end>View</button>
-              </ion-item>
-  
-              <ion-item>
-                <ion-thumbnail item-start>
-                  <img src="img/2.jpg">
-                </ion-thumbnail>
-                <h2>My Neighbor Totoro</h2>
-                <p>Hayao Miyazaki • 1988</p>
-                <button ion-button clear item-end>View</button>
-              </ion-item>
-
-              <ion-item>
-                <ion-thumbnail item-start>
-                  <img src="img/3.jpg">
-                </ion-thumbnail>
-                <h2>My Neighbor Totoro</h2>
-                <p>Hayao Miyazaki • 1988</p>
-                <button ion-button clear item-end>View</button>
-              </ion-item>
-          </ion-list>
-      </p>
-      </div>
+      <ion-card *ngFor="let alert of alerts">
+          <ion-item>
+            <ion-icon name="train" item-start large></ion-icon>
+            <h2>Train ID : {{alert.train_id}}} </h2>
+            <p>{{alert.train_name}}</p>
+          </ion-item>
+        
+          <ion-item>
+            <ion-icon name="md-alarm" item-start large></ion-icon>
+            <h2>{{alert.alert_type}}</h2>
+            <p> {{alert.message}}} </p>
+            <p> {{alert.time}}} </p>
+          </ion-item>
+       </ion-card>       
 </ion-content>
