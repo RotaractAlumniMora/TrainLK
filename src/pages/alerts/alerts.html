@@ -43,7 +43,7 @@
         </ion-item>
       <ion-item>
           <ion-label>Date</ion-label>
-          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date" name="date"></ion-datetime>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="notify_days" name="date"></ion-datetime>
       </ion-item>
     </form>
     <button ion-button type="submit" form="submit-form" block>Submit</button>
@@ -51,15 +51,15 @@
       <ion-card *ngFor="let alert of alerts">
           <ion-item>
             <ion-icon name="train" item-start large></ion-icon>
-            <h2>Train ID : {{alert.train_id}}} </h2>
+            <h2>Train ID : {{alert.train_id}} </h2>
             <p>{{alert.train_name}}</p>
           </ion-item>
         
           <ion-item>
             <ion-icon name="md-alarm" item-start large></ion-icon>
             <h2>{{alert.alert_type}}</h2>
-            <p> {{alert.message}}} </p>
-            <p> {{alert.time}}} </p>
+            <p> {{alert.message}} </p>
+            <p> Recieved  time: {{alert.time}} </p>
           </ion-item>
        </ion-card>       
 </ion-content>

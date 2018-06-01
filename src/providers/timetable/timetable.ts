@@ -1,5 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 /*
   Generated class for the TimetableProvider provider.
@@ -19,7 +25,7 @@ export class TimetableProvider {
     return new Promise(resolve => {
       this.http.post('http://18.191.123.53:8080/ws-mapmytrain/v1/C461D3C23C7E7264726A8D1DD5E/searchtrains', 
       { 
-        "lang":"en",
+        "lang": "en",
         "startStationID":startLocation,
         "endStationID": endLocation,
         "searchDate":date,
@@ -36,6 +42,4 @@ export class TimetableProvider {
       });
     });
   }
-  
-
 }

@@ -41,15 +41,15 @@
 
     <ion-item *ngIf="type=='Delay'">
       <ion-label>Delay</ion-label>
-      <ion-input type="number" name="delay"></ion-input>
-      <ion-select>
+      <ion-input type="number" name="delay"  [(ngModel)]="delayTime"></ion-input>
+      <ion-select  [(ngModel)]="delayUnit" name="delay_units">
         <ion-option>Min</ion-option>
         <ion-option>Hrs</ion-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="type=='Late Departure'">
       <ion-label>Departure Time</ion-label>
-      <ion-datetime displayFormat="h:mm:A" name="depature_time"></ion-datetime>
+      <ion-datetime displayFormat="h:mm:A" name="depature_time" [(ngModel)]="departureTime"></ion-datetime>
     </ion-item>
   </form>
   <button ion-button type="submit" form="submit-form" block>Submit</button>

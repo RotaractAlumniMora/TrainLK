@@ -67,15 +67,16 @@ export class MyApp {
   }
 
   loadUser() {
-    this.firstTime = false;
     this.username = '';
     this.storage.get('username').then((val) => {
       this.username = val;
+      if (this.username != '') {
+        this.firstTime = false;
+        this.showToast('User varified ' + this.username);
+      } else {
+        this.firstTime = true;
+      }
     });
-    if (this.username) {
-      this.firstTime = false;
-      this.showToast('User varified ' + this.username);
-    }
   }
 
   saveUser(id, name) {
@@ -92,9 +93,12 @@ export class MyApp {
         data => {
           if (data['status']) {
             let status = data['status'] == 'STATUS_SUCCESS';
-            userId = data['user_id'];
-            this.saveUser(userId, this.username);
-            this.showToast(status);
+            if (status) {
+              userId = data['user_id'];
+              this.saveUser(userId, this.username);
+            } else {
+              this.handleError(3);
+            }
           } else {
             this.handleError(2);
           }
@@ -130,6 +134,8 @@ export class MyApp {
       this.showToast('Please fill your name.')
     } else if (err == 2) {
       this.showToast('Unknown object recieved. Please contact developers for further instructions.')
+    } else {
+      this.showToast('Server Error.')
     }
   }
 }

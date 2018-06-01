@@ -16,7 +16,8 @@ const httpOptions = {
 */
 @Injectable()
 export class UserProvider {
-  urlAddUser = "http://18.191.123.53:8080/ws-mapmytrain/v1/C461D3C23C7E7264726A8D1DD5E/getroutestations"
+  urlAddUser = "http://18.191.123.53:8080/ws-mapmytrain/v1/C461D3C23C7E7264726A8D1DD5E/adduser"
+  urlScribeAlerts = "http://18.191.123.53:8080/ws-mapmytrain/v1/C461D3C23C7E7264726A8D1DD5E/adduser"
 
   userId;
 
@@ -27,6 +28,10 @@ export class UserProvider {
   }
 
   addUser(name: string) {
+    return this.http.post(this.urlAddUser, { 'name': name }, httpOptions);
+  }
+
+  subscribeAlerts(userId, routeId, startLoc) {
     return this.http.post(this.urlAddUser, { 'name': name }, httpOptions);
   }
 }

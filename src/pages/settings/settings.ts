@@ -66,7 +66,7 @@ export class SettingsPage {
   }
 
   saveSubscriptions() {
-
+    
   }
 
   showToast(msg) {

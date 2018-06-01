@@ -26,12 +26,19 @@ export class AlertsPage {
   }
 
   submitForm() {
-    if(!this.preferred_line || !this.notify_days || !this.notify_days) {
+    const toast = this.toastCtrl.create({
+      message: this.preferred_line + ' ' + this.notify_days + ' ' + this.notify_type,
+      duration: 3000
+    });
+    toast.present();
+    if(!this.preferred_line || !this.notify_days || !this.notify_type) {
+      /*
       const toast = this.toastCtrl.create({
         message: 'All fields are required fields',
         duration: 3000
       });
       toast.present();
+      */
     }
 
     let loader = this.loadingCtrl.create({

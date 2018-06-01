@@ -23,7 +23,7 @@ export class SubmitPage {
 
   public trainId: string;
 
-  public newsType: string;
+  public delayUnit: string;
 
   public delayTime: string;
 
@@ -72,55 +72,56 @@ export class SubmitPage {
   }
 
   loadTrains() {
-    this.trainsProvider.getAllTrains().subscribe(data => {
-      this.trains = data['trains']
-      if (this.trains) {
-        this.hasTrains = this.trains.length > 0
-      } else {
-        this.hasTrains = false;
-      }
-    });
+    this.trainsProvider
+      // .getRouteTrains(this.railwayLine)
+      .getAllTrains()
+      .subscribe(data => {
+        this.trains = data['trains']
+        if (this.trains) {
+          this.hasTrains = this.trains.length > 0
+        } else {
+          this.hasTrains = false;
+        }
+      });
   }
 
   submitForm() {
     let confirm = this.alertCtrl.create({
       title: 'Varification needed',
-      message: 'Do you agree to send your phone number for varification purposes?',
+      message: 'Do you agree to send varificatoin details?',
       buttons: [
         {
           text: 'Disagree',
           handler: () => {
-            let toast = this.toastCtrl.create({
-              message: 'Submission failed.',
-              duration: 3000
-            });
-            toast.present();
+            this.showToast('Submission failed.');
           }
         },
         {
           text: 'Agree',
           handler: () => {
-            var phoenNumber: string;
-            this.storage.get('phoen_number').then((val) => {
-              phoenNumber = val;
+            var userId: string;
+            this.storage.get('user_id').then((val) => {
+              userId = val;
+              // Send the news submission using provider
+              let delayT;
+              if (this.delayUnit == 'Hrs') {
+                delayT = this.delayTime + 'h';
+              } else {
+                delayT = this.delayTime + 'min';
+              }
+              this.newsProvider.addNews(userId, this.trainId, this.type, delayT, this.departureTime).subscribe(data => {
+                if (data['status']) {
+                  let status = (data['status'] == 'STATUS_SUCCESS');
+                  if (status) {
+                    this.showToast('Thank you for your support.');
+                  } else {
+                    this.showToast('Record failed.');
+                  }
+                } else {
+                  this.showToast('Record failed 2.');
+                }
+              });
             });
-            // Send the news submission using provider
-            var status = false;
-            this.showToast(this.trainId);
-            this.newsProvider.addNews(phoenNumber, this.trainId, this.newsType, this.delayTime, this.departureTime);
-            if (status) {
-              let toast = this.toastCtrl.create({
-                message: 'Thank you for your support.',
-                duration: 3000
-              });
-              toast.present();
-            } else {
-              let toast = this.toastCtrl.create({
-                message: 'Could not connect to the server. Please check your internet connection and try again.',
-                duration: 3000
-              });
-              toast.present();
-            }
           }
         }
       ]

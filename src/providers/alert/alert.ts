@@ -17,9 +17,9 @@ export class AlertProvider {
     return new Promise(resolve => {
       this.http.post('http://18.191.123.53:8080/ws-mapmytrain/v1/C461D3C23C7E7264726A8D1DD5E/searchalerts', 
       { 
-        "line" : line,
+        "route_id" : line,
         "date" : date,
-        "type" : type
+        "alert_type" : type
       }, 
       {
         headers: { 'Content-Type': 'application/json' }
