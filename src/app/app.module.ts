@@ -23,6 +23,7 @@ import { AlertProvider } from '../providers/alert/alert';
 import { TimetableProvider } from '../providers/timetable/timetable';
 import { RoutesProvider } from '../providers/routes/routes';
 import { TrainsProvider } from '../providers/trains/trains';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { TrainsProvider } from '../providers/trains/trains';
     TimetableProvider,
     RoutesProvider,
     TrainsProvider,
+    LocalNotifications,
   ]
 })
 export class AppModule {}

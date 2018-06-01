@@ -19,10 +19,16 @@ export class AlertsPage {
   isAlertsLoaded: boolean;
   preferred_line: string;
   notify_type: string;
-  notify_days :string;
-  alerts : any;
+  notify_days: string;
+  alerts: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertProvider , public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertProvider,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController
+  ) {
   }
 
   submitForm() {
@@ -31,7 +37,7 @@ export class AlertsPage {
       duration: 3000
     });
     toast.present();
-    if(!this.preferred_line || !this.notify_days || !this.notify_type) {
+    if (!this.preferred_line || !this.notify_days || !this.notify_type) {
       /*
       const toast = this.toastCtrl.create({
         message: 'All fields are required fields',
@@ -47,8 +53,8 @@ export class AlertsPage {
     });
     loader.present();
     this.alertCtrl.load(this.preferred_line, this.notify_days, this.notify_type)
-      .then(data => { 
-        this.alerts= data;
+      .then(data => {
+        this.alerts = data;
         this.isAlertsLoaded = true;
       });
     loader.dismiss();

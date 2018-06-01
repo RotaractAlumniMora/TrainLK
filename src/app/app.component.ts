@@ -13,6 +13,8 @@ import { AlertsPage } from '../pages/alerts/alerts';
 import { Slides } from 'ionic-angular';
 import { UserProvider } from '../providers/user/user';
 import { Storage } from '@ionic/storage';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { AlertProvider } from '../providers/alert/alert';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,6 +39,8 @@ export class MyApp {
     public userProvider: UserProvider,
     public toastCtrl: ToastController,
     private storage: Storage,
+    private localNotifications: LocalNotifications,
+    public alertCtrl: AlertProvider,
   ) {
     this.initializeApp();
 
@@ -49,6 +53,18 @@ export class MyApp {
     this.pages['Timetable'] = TimetablePage;
     this.pages['About Us'] = AboutUsPage;
     this.loadUser();
+
+    this.alertCtrl.load(1, 0, '2016-06-01')
+      .then(data => {
+        let notificatoin = data[0];
+        // Schedule delayed notification
+        this.localNotifications.schedule({
+          text: notificatoin['alert_type'],
+          trigger: { at: new Date(new Date().getTime() + 3600) },
+          led: 'FF0000',
+          sound: null
+        });
+      });
   }
 
   initializeApp() {
@@ -67,10 +83,11 @@ export class MyApp {
   }
 
   loadUser() {
+    this.firstTime = true;
     this.username = '';
     this.storage.get('username').then((val) => {
       this.username = val;
-      if (this.username != '') {
+      if (this.username && this.username != '') {
         this.firstTime = false;
         this.showToast('User varified ' + this.username);
       } else {

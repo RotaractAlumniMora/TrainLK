@@ -118,7 +118,7 @@ export class SubmitPage {
                     this.showToast('Record failed.');
                   }
                 } else {
-                  this.showToast('Record failed 2.');
+                  this.showToast('Invalid record format.');
                 }
               });
             });

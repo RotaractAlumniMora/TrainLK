@@ -1,17 +1,16 @@
 <ion-content class="first-time" *ngIf="firstTime;else other_content">
   <ion-slides pager>
     <ion-slide>
-      <ion-toolbar>
-        <ion-buttons end>
-        </ion-buttons>
-      </ion-toolbar>
-      <h2>Welcome to TrainLK</h2>
-      <h3>Lets get Started!</h3>
+      <img src="assets/imgs/launch.png">
+      <button ion-button large clear icon-end color="primary">
+        Continue
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
     </ion-slide>
     <ion-slide>
       <ion-toolbar>
       </ion-toolbar>
-      <h2 class="slide-title">Ready to Play?</h2>
+      <h2 class="slide-title">App Registration</h2>
       <form (ngSubmit)="registerUser()">
         <ion-item>
           <ion-label floating>Your Name</ion-label>
