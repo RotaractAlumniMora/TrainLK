@@ -22,6 +22,7 @@ import { NewsItemsProvider } from '../providers/news-items/news-items';
 import { AlertProvider } from '../providers/alert/alert';
 import { TimetableProvider } from '../providers/timetable/timetable';
 import { RoutesProvider } from '../providers/routes/routes';
+import { TrainsProvider } from '../providers/trains/trains';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { RoutesProvider } from '../providers/routes/routes';
     AlertProvider,
     TimetableProvider,
     RoutesProvider,
+    TrainsProvider,
   ]
 })
 export class AppModule {}

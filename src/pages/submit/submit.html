@@ -18,10 +18,11 @@
   <form (ngSubmit)="submitForm()" id='submit-form'>
     <ion-item>
       <ion-label>Railway Line</ion-label>
-      <ion-select>
-        <ion-option *ngFor="let item of routes">{{item[1]}}</ion-option>
+      <ion-select [(ngModel)]="railwayLine" name="preferred_line">
+        <ion-option *ngFor="let item of routes" value={{item[0]}}>{{item[1]}}</ion-option>
       </ion-select>
     </ion-item>
+
     <ion-item>
       <ion-label>Type</ion-label>
       <ion-select [(ngModel)]="type" name='alert-type'>
@@ -30,14 +31,14 @@
         <ion-option>Late Departure</ion-option>
       </ion-select>
     </ion-item>
+
     <ion-item>
       <ion-label>Train</ion-label>
-      <ion-select>
-        <ion-option>Train 1</ion-option>
-        <ion-option>Other trains</ion-option>
+      <ion-select [(ngModel)]="trainId" name="train_selector" disabled ="{{!hasTrains}}">
+        <ion-option *ngFor="let item of trains" value="{{item['train_id']}}">{{item['name']}}</ion-option>
       </ion-select>
-      <!-- [(ngModel)]="alert.train" -->
     </ion-item>
+
     <ion-item *ngIf="type=='Delay'">
       <ion-label>Delay</ion-label>
       <ion-input type="number" name="delay"></ion-input>
