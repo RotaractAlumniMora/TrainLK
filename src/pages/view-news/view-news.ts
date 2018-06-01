@@ -17,24 +17,24 @@ import { LoadingController } from 'ionic-angular';
 export class ViewNewsPage {
   newsItem: any;
   newsId: any;
-  isNewsSet : any;
+  isNewsSet: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public newsProvider: NewsProvider, public loadingCtrl: LoadingController) {
     this.newsId = navParams.get('newsId');
     this.load();
   }
 
-  load(){
+  load() {
     let loader = this.loadingCtrl.create({
       content: "Please Wait",
     });
     loader.present();
     this.newsProvider.loadNewsItem(this.newsId)
-      .then(data => { 
+      .then(data => {
         this.newsItem = data;
         this.isNewsSet = true;
+        loader.dismiss();
       });
-    loader.dismiss();
-    }
+  }
 
 }

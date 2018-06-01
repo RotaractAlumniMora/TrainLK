@@ -20,18 +20,18 @@ export class TimetablePage {
   isTrainsLoaded: boolean;
   startTime: string;
   endTime: string;
-  startLocation :string;
-  endLocation :string;
-  date :string;
+  startLocation: string;
+  endLocation: string;
+  date: string;
   trains: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public timeTableProvider: TimetableProvider, public toastCtrl: ToastController) {
- 
+
   }
 
-  submitForm(){
-  
-    if(!this.startLocation || !this.endTime || !this.endLocation || !this.startTime || !this.date) {
+  submitForm() {
+
+    if (!this.startLocation || !this.endTime || !this.endLocation || !this.startTime || !this.date) {
       const toast = this.toastCtrl.create({
         message: 'All fields are required fields',
         duration: 3000
@@ -45,11 +45,11 @@ export class TimetablePage {
     });
     loader.present();
     this.timeTableProvider.load(this.startLocation, this.endLocation, this.startTime, this.endTime, this.date)
-      .then(data => { 
-        this.trains= data;
+      .then(data => {
+        this.trains = data;
         this.isTrainsLoaded = true;
+        loader.dismiss();
       });
-    loader.dismiss();
   }
 
 }

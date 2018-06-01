@@ -9,22 +9,22 @@
 
 <ion-content padding>
 
-     <ion-card (click)="openNews(newsItem.id)" *ngFor="let newsItem of news">
-         <img src="{{newsItem.url}}" />
-                <ion-card-content>
-                  <ion-card-title>
-                      {{newsItem.project_name}}
-                    </ion-card-title>
-                  <p>
-                      {{newsItem.baseline}}
-                  </p>
-                </ion-card-content>       
-    </ion-card>       
-        
+  <ion-card (click)="openNews(newsItem.id)" *ngFor="let newsItem of news">
+    <img src="{{newsItem.url}}" />
+    <ion-card-content>
+      <ion-card-title>
+        {{newsItem.project_name}}
+      </ion-card-title>
+      <p>
+        {{newsItem.baseline}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar class="center">
-      <p>Refer the side menu for options</p>
-    </ion-toolbar>
+  <ion-toolbar class="center">
+    <p>Refer the side menu for options</p>
+  </ion-toolbar>
 </ion-footer>

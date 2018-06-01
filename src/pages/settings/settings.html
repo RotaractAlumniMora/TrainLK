@@ -57,7 +57,30 @@
         <ion-row>
           <ion-item>
             <ion-label>Weekdays</ion-label>
-            <ion-toggle [(ngModel)]="notifyWeekdays" name='notify_weekdays'></ion-toggle>
+            <ion-toggle name='notify_weekdays'></ion-toggle>
+          </ion-item>
+        </ion-row>
+        <ion-row *ngIf='notifyWeekdays'>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Start</ion-label>
+              <ion-datetime displayFormat="h:mm:A"></ion-datetime>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>End</ion-label>
+              <ion-datetime displayFormat="h:mm:A"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+      <ion-grid>
+        <ion-row>
+          <ion-item>
+            <ion-label>Saturday</ion-label>
+            <ion-toggle name='notify_saturday'></ion-toggle>
           </ion-item>
         </ion-row>
         <ion-row *ngIf='notifyWeekdays'>
@@ -76,14 +99,39 @@
         </ion-row>
       </ion-grid>
 
+      
       <ion-grid>
         <ion-row>
           <ion-item>
-            <ion-label>Saturday</ion-label>
-            <ion-toggle [(ngModel)]="notifySaturday" name='notify_saturday'></ion-toggle>
+            <ion-label>Sunday</ion-label>
+            <ion-toggle name='notify_sunday'></ion-toggle>
           </ion-item>
         </ion-row>
-        <ion-row *ngIf='notifySaturday'>
+        <ion-row *ngIf='notifySunday'>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Start</ion-label>
+              <ion-datetime displayFormat="h:mm:A"></ion-datetime>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>End</ion-label>
+              <ion-datetime displayFormat="h:mm:A"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      
+      <ion-grid>
+        <ion-row>
+          <ion-item>
+            <ion-label>Holiday</ion-label>
+            <ion-toggle name='notify_holiday'></ion-toggle>
+          </ion-item>
+        </ion-row>
+        <ion-row *ngIf='notifyHoliday'>
           <ion-col col-6>
             <ion-item>
               <ion-label stacked>Start</ion-label>

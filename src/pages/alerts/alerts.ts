@@ -32,11 +32,6 @@ export class AlertsPage {
   }
 
   submitForm() {
-    const toast = this.toastCtrl.create({
-      message: this.preferred_line + ' ' + this.notify_days + ' ' + this.notify_type,
-      duration: 3000
-    });
-    toast.present();
     if (!this.preferred_line || !this.notify_days || !this.notify_type) {
       /*
       const toast = this.toastCtrl.create({
@@ -56,7 +51,7 @@ export class AlertsPage {
       .then(data => {
         this.alerts = data;
         this.isAlertsLoaded = true;
+        loader.dismiss();
       });
-    loader.dismiss();
   }
 }

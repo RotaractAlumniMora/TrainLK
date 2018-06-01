@@ -66,7 +66,12 @@ export class SettingsPage {
   }
 
   saveSubscriptions() {
-    
+    // this.showToast('Subscription successful.');
+    if (!this.preferredRoute || !this.endStation || !this.startStation) {
+      this.showToast('Subscription successful.');
+    } else {
+      this.showToast('Subscription successful.');
+    }
   }
 
   showToast(msg) {

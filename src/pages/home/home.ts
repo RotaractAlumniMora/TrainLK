@@ -23,14 +23,14 @@ export class HomePage {
     });
     loader.present();
     this.newsProvider.load()
-      .then(data => { 
-        this.news= data;
+      .then(data => {
+        this.news = data;
+        loader.dismiss();
       });
-    loader.dismiss();
   }
 
   openNews(id) {
-    this.navCtrl.push(ViewNewsPage, {'newsId': id});
+    this.navCtrl.push(ViewNewsPage, { 'newsId': id });
   }
 
 }

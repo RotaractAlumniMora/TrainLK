@@ -53,18 +53,15 @@ export class MyApp {
     this.pages['Timetable'] = TimetablePage;
     this.pages['About Us'] = AboutUsPage;
     this.loadUser();
-
-    this.alertCtrl.load(1, 0, '2016-06-01')
-      .then(data => {
-        let notificatoin = data[0];
-        // Schedule delayed notification
-        this.localNotifications.schedule({
-          text: notificatoin['alert_type'],
-          trigger: { at: new Date(new Date().getTime() + 3600) },
-          led: 'FF0000',
-          sound: null
-        });
-      });
+    /*
+    // Schedule delayed notification
+    this.localNotifications.schedule({
+      text: 'Trains from Polgahawela to Colombo Fort delayed.',
+      trigger: { at: new Date(new Date().getTime() + 60000) },
+      led: 'FF0000',
+      sound: null
+    });
+    */
   }
 
   initializeApp() {
