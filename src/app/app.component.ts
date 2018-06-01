@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -12,6 +12,7 @@ import { AlertsPage } from '../pages/alerts/alerts';
 
 import { Slides } from 'ionic-angular';
 import { UserProvider } from '../providers/user/user';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,7 +34,9 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public userProvider: UserProvider
+    public userProvider: UserProvider,
+    public toastCtrl: ToastController,
+    private storage: Storage,
   ) {
     this.initializeApp();
 
@@ -45,8 +48,7 @@ export class MyApp {
     this.pages['Settings'] = SettingsPage;
     this.pages['Timetable'] = TimetablePage;
     this.pages['About Us'] = AboutUsPage;
-    this.firstTime = true;
-    this.username = '';
+    this.loadUser();
   }
 
   initializeApp() {
@@ -64,7 +66,70 @@ export class MyApp {
     this.nav.setRoot(this.pages[page]);
   }
 
+  loadUser() {
+    this.firstTime = false;
+    this.username = '';
+    this.storage.get('username').then((val) => {
+      this.username = val;
+    });
+    if (this.username) {
+      this.firstTime = false;
+      this.showToast('User varified ' + this.username);
+    }
+  }
+
+  saveUser(id, name) {
+    this.storage.set('user_id', id);
+    this.storage.set('username', name);
+    this.loadUser();
+  }
+
   registerUser() {
-    this.firstTime = !this.userProvider.addUser(this.username);
+    // this.firstTime = !this.userProvider.addUser(this.username);
+    if (this.validateUser()) {
+      let userId;
+      this.userProvider.addUser(this.username).subscribe(
+        data => {
+          if (data['status']) {
+            let status = data['status'] == 'STATUS_SUCCESS';
+            userId = data['user_id'];
+            this.saveUser(userId, this.username);
+            this.showToast(status);
+          } else {
+            this.handleError(2);
+          }
+        },
+        error => {
+          this.handleError(0);
+        }
+      );
+    } else {
+      this.handleError(1);
+    }
+  }
+
+  showToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
+  }
+
+  validateUser() {
+    if (this.username == '') {
+      return false;
+    }
+    return true;
+  }
+
+  handleError(err) {
+    if (err == 0) {
+      this.showToast('Unable to create user account. Please retry with another name.');
+    } else if (err == 1) {
+      this.showToast('Please fill your name.')
+    } else if (err == 2) {
+      this.showToast('Unknown object recieved. Please contact developers for further instructions.')
+    }
   }
 }
