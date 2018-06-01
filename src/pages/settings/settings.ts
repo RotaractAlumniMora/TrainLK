@@ -9,9 +9,6 @@ import { RoutesProvider } from '../../providers/routes/routes';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-  // User Related informartion
-  userName: string;
-
   // Subscription based information
   _preferredRoute: string;
 
@@ -39,7 +36,6 @@ export class SettingsPage {
 
   load() {
     this.loadRoutes();
-    this.loadUser();
   }
 
   set preferredRoute(val) {
@@ -67,12 +63,6 @@ export class SettingsPage {
         this.endStation = this.routeStations[0];
       }
     })
-  }
-
-  loadUser() {
-    this.storage.get('user_name').then((val) => {
-      this.userName = val;
-    });
   }
 
   saveSubscriptions() {
